@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Problem2Proof</title>
 
@@ -11,347 +13,364 @@
 
 <body>
 
-    <!-- ================= LOGIN PAGE ================= -->
+<!-- LOGIN -->
 
-    <section id="login" class="login-page">
+<div id="loginView" class="center">
 
-        <div class="login-box">
+    <div class="card auth">
 
-            <h1>Problem2Proof</h1>
+        <h1>Problem2Proof</h1>
 
-            <p class="subtitle">
-                Smart Campus Problem Reporting System
+        <p>
+            Smart Campus Problem Reporting Platform
+        </p>
+
+        <input
+            id="email"
+            type="email"
+            placeholder="Email">
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Password">
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <hr>
+
+        <h3>Create Student Account</h3>
+
+        <input
+            id="regName"
+            placeholder="Full Name">
+
+        <input
+            id="regEmail"
+            type="email"
+            placeholder="Student Email">
+
+        <input
+            id="regPassword"
+            type="password"
+            placeholder="Password (minimum 6 characters)">
+
+        <button
+            class="secondary"
+            onclick="registerStudent()">
+
+            Create Account
+
+        </button>
+
+        <small>
+            Admin Login:<br>
+            admin@problem2proof.com<br>
+            Password: admin123
+        </small>
+
+        <p id="authMsg"></p>
+
+    </div>
+
+</div>
+
+
+<!-- APPLICATION -->
+
+<div id="appView" hidden>
+
+<header>
+
+    <div>
+        <b>Problem2Proof</b>
+        <span class="tag">Smart Campus</span>
+    </div>
+
+    <nav>
+
+        <button onclick="page('home')">
+            Home
+        </button>
+
+        <button onclick="page('report')">
+            Report Problem
+        </button>
+
+        <button onclick="page('mine')">
+            My Reports
+        </button>
+
+        <button onclick="page('colleges')">
+            Colleges & Courses
+        </button>
+
+        <button
+            id="adminNav"
+            onclick="page('admin')"
+            hidden>
+
+            Admin Dashboard
+
+        </button>
+
+        <button onclick="logout()">
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+<!-- HOME -->
+
+<section
+    id="home"
+    class="page">
+
+    <div class="hero">
+
+        <h1>
+            Report. Understand. Act. Prove.
+        </h1>
+
+        <p>
+            Turn scattered campus complaints
+            into structured and trackable cases.
+        </p>
+
+        <button
+            onclick="page('report')">
+
+            Report a Problem
+
+        </button>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>📷 Evidence</h3>
+
+            <p>
+                Add images and location
+                with your complaint.
             </p>
-
-            <h2>Login</h2>
-
-            <label>Email</label>
-
-            <input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-            >
-
-            <label>Password</label>
-
-            <input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-            >
-
-            <!-- LOGIN BUTTON -->
-            <button
-                type="button"
-                id="loginBtn"
-                onclick="doLogin()"
-            >
-                Login
-            </button>
-
-            <p id="msg"></p>
-
-
-            <!-- STUDENT REGISTRATION -->
-
-            <hr>
-
-            <h3>New Student?</h3>
-
-            <input
-                id="name"
-                type="text"
-                placeholder="Enter your name"
-            >
-
-            <input
-                id="re"
-                type="email"
-                placeholder="Student email"
-            >
-
-            <input
-                id="rp"
-                type="password"
-                placeholder="Create password"
-            >
-
-            <button
-                type="button"
-                onclick="registerStudent()"
-            >
-                Create Student Account
-            </button>
 
         </div>
 
-    </section>
 
+        <div class="card">
 
-    <!-- ================= MAIN APP ================= -->
+            <h3>🤖 AI Triage</h3>
 
-    <section id="app" style="display:none;">
+            <p>
+                Automatically classify category,
+                department and priority.
+            </p>
 
-        <!-- HEADER -->
+        </div>
 
-        <header class="topbar">
 
-            <div>
-                <h1>Problem2Proof</h1>
-                <p id="welcome"></p>
-            </div>
+        <div class="card">
 
-            <button
-                type="button"
-                onclick="logout()"
-            >
-                Logout
-            </button>
+            <h3>✅ Resolution Proof</h3>
 
-        </header>
+            <p>
+                Track the problem until
+                resolution proof is added.
+            </p>
 
+        </div>
 
-        <!-- NAVIGATION -->
+    </div>
 
-        <nav>
+</section>
 
-            <button
-                type="button"
-                onclick="page('home')"
-            >
-                Home
-            </button>
 
-            <button
-                type="button"
-                onclick="page('report')"
-            >
-                Report Problem
-            </button>
+<!-- REPORT -->
 
-            <button
-                type="button"
-                onclick="page('reports')"
-            >
-                My Reports
-            </button>
+<section
+    id="report"
+    class="page"
+    hidden>
 
-            <button
-                type="button"
-                onclick="page('notifications')"
-            >
-                Notifications
-            </button>
+    <div class="card form">
 
-            <button
-                type="button"
-                id="ab"
-                style="display:none;"
-                onclick="page('admin')"
-            >
-                Admin Dashboard
-            </button>
+        <h2>
+            Report a Campus Problem
+        </h2>
 
-        </nav>
+        <input
+            id="rTitle"
+            placeholder="Problem Title">
 
 
-        <!-- ================= HOME ================= -->
+        <textarea
+            id="rDesc"
+            placeholder="Describe the problem clearly">
+        </textarea>
 
-        <main>
 
-            <section id="home" class="page">
+        <input
+            id="rLocation"
+            placeholder="Location e.g. Hostel Block A">
 
-                <div class="hero">
 
-                    <h2>Report. Track. Resolve.</h2>
+        <label>
+            Expected Impact
 
-                    <p>
-                        Report campus problems and help your
-                        institution solve them efficiently.
-                    </p>
+            <select id="rReach">
 
-                    <button
-                        type="button"
-                        onclick="page('report')"
-                    >
-                        Report a Problem
-                    </button>
+                <option value="Low">
+                    Low
+                </option>
 
-                </div>
+                <option value="Medium">
+                    Medium
+                </option>
 
-                <div class="cards">
+                <option value="High">
+                    High
+                </option>
 
-                    <div class="card">
-                        <h3>📸 Evidence</h3>
-                        <p>
-                            Upload photos with your problem report.
-                        </p>
-                    </div>
+            </select>
 
-                    <div class="card">
-                        <h3>🤖 Smart Analysis</h3>
-                        <p>
-                            Reports are automatically categorized
-                            and prioritized.
-                        </p>
-                    </div>
+        </label>
 
-                    <div class="card">
-                        <h3>✅ Resolution Proof</h3>
-                        <p>
-                            Admins can upload proof after resolving
-                            an issue.
-                        </p>
-                    </div>
 
-                </div>
+        <label>
+            Evidence Image
 
-            </section>
+            <input
+                id="rImage"
+                type="file"
+                accept="image/*">
 
+        </label>
 
-            <!-- ================= REPORT PROBLEM ================= -->
 
-            <section
-                id="report"
-                class="page"
-                style="display:none;"
-            >
+        <button onclick="submitReport()">
 
-                <div class="box">
+            Submit Report
 
-                    <h2>Report a Campus Problem</h2>
+        </button>
 
-                    <label>Problem Title</label>
 
-                    <input
-                        id="title"
-                        type="text"
-                        placeholder="Example: Water leakage near hostel"
-                    >
+        <p id="reportMsg"></p>
 
+    </div>
 
-                    <label>Description</label>
+</section>
 
-                    <textarea
-                        id="desc"
-                        placeholder="Describe the problem..."
-                    ></textarea>
 
+<!-- MY REPORTS -->
 
-                    <label>Location</label>
+<section
+    id="mine"
+    class="page"
+    hidden>
 
-                    <input
-                        id="loc"
-                        type="text"
-                        placeholder="Example: Hostel Block A"
-                    >
+    <h2>
+        My Reports
+    </h2>
 
+    <div id="myReports"></div>
 
-                    <label>Photo Evidence</label>
 
-                    <input
-                        id="photo"
-                        type="file"
-                        accept="image/*"
-                    >
+    <h2>
+        Notifications
+    </h2>
 
+    <div id="notifications"></div>
 
-                    <button
-                        type="button"
-                        onclick="submitReport()"
-                    >
-                        Submit Report
-                    </button>
+</section>
 
-                    <p id="reportMsg"></p>
 
-                </div>
+<!-- ADMIN -->
 
-            </section>
+<section
+    id="admin"
+    class="page"
+    hidden>
 
+    <h2>
+        Admin Dashboard
+    </h2>
 
-            <!-- ================= MY REPORTS ================= -->
+    <div
+        id="stats"
+        class="grid">
+    </div>
 
-            <section
-                id="reports"
-                class="page"
-                style="display:none;"
-            >
 
-                <div class="box">
+    <h3>
+        All Campus Reports
+    </h3>
 
-                    <h2>My Reports</h2>
+    <div id="adminReports"></div>
 
-                    <div id="mine">
-                        Loading...
-                    </div>
+</section>
 
-                </div>
 
-            </section>
+<!-- COLLEGES -->
 
+<section
+    id="colleges"
+    class="page"
+    hidden>
 
-            <!-- ================= NOTIFICATIONS ================= -->
+    <div class="hero">
 
-            <section
-                id="notifications"
-                class="page"
-                style="display:none;"
-            >
+        <h1>
+            Explore Bihar Colleges
+        </h1>
 
-                <div class="box">
+        <input
+            id="collegeSearch"
+            placeholder="Search college..."
+            oninput="filterColleges()">
 
-                    <h2>Notifications</h2>
 
-                    <div id="notes">
-                        Loading...
-                    </div>
+        <select
+            id="courseFilter"
+            onchange="filterColleges()">
 
-                </div>
+            <option value="all">
+                All Courses
+            </option>
 
-            </section>
+            <option value="btech">
+                B.Tech
+            </option>
 
+        </select>
 
-            <!-- ================= ADMIN ================= -->
+    </div>
 
-            <section
-                id="admin"
-                class="page"
-                style="display:none;"
-            >
 
-                <div class="box">
+    <div
+        id="collegeGrid"
+        class="grid">
+    </div>
 
-                    <h2>Admin Dashboard</h2>
+</section>
 
-                    <div id="stats">
-                        Loading statistics...
-                    </div>
+</main>
 
-                </div>
+</div>
 
 
-                <div class="box">
-
-                    <h2>All Campus Reports</h2>
-
-                    <div id="all">
-                        Loading reports...
-                    </div>
-
-                </div>
-
-            </section>
-
-        </main>
-
-    </section>
-
-
-    <!-- JAVASCRIPT -->
-
-    <script src="app.js"></script>
+<script src="app.js"></script>
 
 </body>
+
 </html>
