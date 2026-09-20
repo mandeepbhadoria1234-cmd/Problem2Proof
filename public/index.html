@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Problem2Proof</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= LOGIN PAGE ================= -->
+
+    <section id="login" class="login-page">
+
+        <div class="login-box">
+
+            <h1>Problem2Proof</h1>
+
+            <p class="subtitle">
+                Smart Campus Problem Reporting System
+            </p>
+
+            <h2>Login</h2>
+
+            <label>Email</label>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+            >
+
+            <label>Password</label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+            >
+
+            <!-- LOGIN BUTTON -->
+            <button
+                type="button"
+                id="loginBtn"
+                onclick="doLogin()"
+            >
+                Login
+            </button>
+
+            <p id="msg"></p>
+
+
+            <!-- STUDENT REGISTRATION -->
+
+            <hr>
+
+            <h3>New Student?</h3>
+
+            <input
+                id="name"
+                type="text"
+                placeholder="Enter your name"
+            >
+
+            <input
+                id="re"
+                type="email"
+                placeholder="Student email"
+            >
+
+            <input
+                id="rp"
+                type="password"
+                placeholder="Create password"
+            >
+
+            <button
+                type="button"
+                onclick="registerStudent()"
+            >
+                Create Student Account
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN APP ================= -->
+
+    <section id="app" style="display:none;">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Problem2Proof</h1>
+                <p id="welcome"></p>
+            </div>
+
+            <button
+                type="button"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </header>
+
+
+        <!-- NAVIGATION -->
+
+        <nav>
+
+            <button
+                type="button"
+                onclick="page('home')"
+            >
+                Home
+            </button>
+
+            <button
+                type="button"
+                onclick="page('report')"
+            >
+                Report Problem
+            </button>
+
+            <button
+                type="button"
+                onclick="page('reports')"
+            >
+                My Reports
+            </button>
+
+            <button
+                type="button"
+                onclick="page('notifications')"
+            >
+                Notifications
+            </button>
+
+            <button
+                type="button"
+                id="ab"
+                style="display:none;"
+                onclick="page('admin')"
+            >
+                Admin Dashboard
+            </button>
+
+        </nav>
+
+
+        <!-- ================= HOME ================= -->
+
+        <main>
+
+            <section id="home" class="page">
+
+                <div class="hero">
+
+                    <h2>Report. Track. Resolve.</h2>
+
+                    <p>
+                        Report campus problems and help your
+                        institution solve them efficiently.
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="page('report')"
+                    >
+                        Report a Problem
+                    </button>
+
+                </div>
+
+                <div class="cards">
+
+                    <div class="card">
+                        <h3>📸 Evidence</h3>
+                        <p>
+                            Upload photos with your problem report.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🤖 Smart Analysis</h3>
+                        <p>
+                            Reports are automatically categorized
+                            and prioritized.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>✅ Resolution Proof</h3>
+                        <p>
+                            Admins can upload proof after resolving
+                            an issue.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= REPORT PROBLEM ================= -->
+
+            <section
+                id="report"
+                class="page"
+                style="display:none;"
+            >
+
+                <div class="box">
+
+                    <h2>Report a Campus Problem</h2>
+
+                    <label>Problem Title</label>
+
+                    <input
+                        id="title"
+                        type="text"
+                        placeholder="Example: Water leakage near hostel"
+                    >
+
+
+                    <label>Description</label>
+
+                    <textarea
+                        id="desc"
+                        placeholder="Describe the problem..."
+                    ></textarea>
+
+
+                    <label>Location</label>
+
+                    <input
+                        id="loc"
+                        type="text"
+                        placeholder="Example: Hostel Block A"
+                    >
+
+
+                    <label>Photo Evidence</label>
+
+                    <input
+                        id="photo"
+                        type="file"
+                        accept="image/*"
+                    >
+
+
+                    <button
+                        type="button"
+                        onclick="submitReport()"
+                    >
+                        Submit Report
+                    </button>
+
+                    <p id="reportMsg"></p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= MY REPORTS ================= -->
+
+            <section
+                id="reports"
+                class="page"
+                style="display:none;"
+            >
+
+                <div class="box">
+
+                    <h2>My Reports</h2>
+
+                    <div id="mine">
+                        Loading...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= NOTIFICATIONS ================= -->
+
+            <section
+                id="notifications"
+                class="page"
+                style="display:none;"
+            >
+
+                <div class="box">
+
+                    <h2>Notifications</h2>
+
+                    <div id="notes">
+                        Loading...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ADMIN ================= -->
+
+            <section
+                id="admin"
+                class="page"
+                style="display:none;"
+            >
+
+                <div class="box">
+
+                    <h2>Admin Dashboard</h2>
+
+                    <div id="stats">
+                        Loading statistics...
+                    </div>
+
+                </div>
+
+
+                <div class="box">
+
+                    <h2>All Campus Reports</h2>
+
+                    <div id="all">
+                        Loading reports...
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </section>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="app.js"></script>
+
+</body>
+</html>
